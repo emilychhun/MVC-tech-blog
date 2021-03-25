@@ -1,26 +1,9 @@
-const router = require('express').Router();
-const { Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+let router = require('express').Router();
+let { Comment } = require('../../models');
+let withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-    Comment.findAll({
-        // Query configuration 
-     attributes: ['id', 'comment_text', 'post_id','user_id', 'created_at'],
-     //show the last news first
-     order: [['created_at', 'DESC']], 
-     include: [
-      {
-        model: User,
-        attributes: ['username']
-      },
-
-        {
-          model: Post,
-          attributes: ['title', 'Post_content']
-        }
-    ]
-
-    })
+    Comment.findAll({})
       .then(dbCommentData => res.json(dbCommentData))
       .catch(err => {
         console.log(err);
@@ -35,7 +18,8 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id
     },
-   
+    attributes: ['id', 'comment_text', 'post_id', 'created_at'],
+  
   }).then(dbCommentData => res.json(dbCommentData))
     .catch(err => {
       console.log(err);
@@ -52,6 +36,7 @@ router.post('/', withAuth, (req, res) => {
       post_id: req.body.post_id,
       // use the id from the session
       user_id: req.session.user_id,
+      created_at: Date.now()
     })
       .then(dbCommentData => res.json(dbCommentData))
       .catch(err => {

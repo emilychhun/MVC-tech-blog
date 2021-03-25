@@ -1,34 +1,31 @@
-const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
+let router = require('express').Router();
+let sequelize = require('../config/connection');
+let { Post, User, Comment } = require('../models');
 
 router.get('/', (req, res) => {
     console.log(req.session);
     
-    Post.findAll({
-      attributes: [
+    Post.findAll({ 
+        attributes: [
         'id',
+        'post_content',
         'title',
-        'created_at',
-        'post_content'
-      ],
+        'created_at'
+         ],
       include: [
         {
           model: Comment,
           attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        },
+         },
         {
           model: User,
           attributes: ['username']
         }
       ]
+   
     })
       .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get({ plain: true }));
+        let posts = dbPostData.map(post => post.get({ plain: true }));
         res.render('homepage', {
             posts,
             loggedIn: req.session.loggedIn
@@ -48,6 +45,7 @@ router.get('/login', (req, res) => {
   
     res.render('login');
   });
+  
 
   router.get('/signup', (req, res) => {
     if (req.session.loggedIn) {
@@ -57,8 +55,7 @@ router.get('/login', (req, res) => {
   
     res.render('signup');
   });
-
-  router.get('/post/:id', (req, res) => {
+ router.get('/post/:id', (req, res) => {
     Post.findOne({
       where: {
         id: req.params.id
@@ -91,7 +88,7 @@ router.get('/login', (req, res) => {
         }
   
         // serialize the data
-        const post = dbPostData.get({ plain: true });
+        let post = dbPostData.get({ plain: true });
   
         // pass data to template
         res.render('single-post', {
@@ -104,5 +101,10 @@ router.get('/login', (req, res) => {
         res.status(500).json(err);
       });
 });
+
+
+
+
+
 
 module.exports = router;

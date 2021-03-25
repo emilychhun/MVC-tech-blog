@@ -1,18 +1,18 @@
 let express = require('express');
 let routes = require('./controllers');
 let sequelize = require('./config/connection');
-const path = require('path');
+let path = require('path');
 
 
-const helpers = require('./utils/helpers');
+let helpers = require('./utils/helpers');
 
 
 
-const exphbs = require('express-handlebars');
-const hbs = exphbs.create({ helpers });
+let exphbs = require('express-handlebars');
+let hbs = exphbs.create({ helpers });
 
 
-const session = require('express-session');
+let session = require('express-session');
 
 let app = express();
 let PORT = process.env.PORT || 3001;
@@ -21,9 +21,9 @@ let PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+let SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const sess = {
+let sess = {
   secret: 'bigbluedog',
   cookie: {
         // Session will automatically expire in 10 minutes

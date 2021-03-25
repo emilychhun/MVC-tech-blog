@@ -1,10 +1,10 @@
   
 // import the Sequelize constructor from the library
-const Sequelize = require('sequelize');
+let Sequelize = require('sequelize');
 
 // Creates mySQL connection using Sequelize
 // Include your MySQL user/password information
-const sequelize = process.env.JAWSDB_URL
+let sequelize = process.env.JAWSDB_URL
   ? new Sequelize(process.env.JAWSDB_URL)
   : new Sequelize('MVC_Tech_Blog_db', 'root', '0220', {
       host: 'localhost',

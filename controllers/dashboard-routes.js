@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
-const withAuth = require('../utils/auth');
+let router = require('express').Router();
+let sequelize = require('../config/connection');
+let { Post, User, Comment } = require('../models');
+let withAuth = require('../utils/auth');
 
 router.get('/', withAuth, (req, res) => {
     Post.findAll({
@@ -19,10 +19,7 @@ router.get('/', withAuth, (req, res) => {
         {
           model: Comment,
           attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
+        
         },
         {
           model: User,
@@ -32,7 +29,7 @@ router.get('/', withAuth, (req, res) => {
     })
       .then(dbPostData => {
         // serialize data before passing to template
-        const posts = dbPostData.map(post => post.get({ plain: true }));
+        let posts = dbPostData.map(post => post.get({ plain: true }));
         res.render('dashboard', { posts, loggedIn: true });
       })
       .catch(err => {
@@ -56,10 +53,7 @@ router.get('/', withAuth, (req, res) => {
         {
           model: Comment,
           attributes: ['id', 'comment_text', 'post_id', 'user_id'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
+        
         },
         {
           model: User,
@@ -74,7 +68,7 @@ router.get('/', withAuth, (req, res) => {
         }
   
         // serialize the data
-        const post = dbPostData.get({ plain: true });
+        let post = dbPostData.get({ plain: true });
 
         res.render('edit-post', {
             post,
@@ -103,10 +97,7 @@ router.get('/create/', withAuth, (req, res) => {
         {
           model: Comment,
           attributes: ['id', 'comment_text', 'post_id', 'user_id'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
+         
         },
         {
           model: User,
@@ -116,7 +107,7 @@ router.get('/create/', withAuth, (req, res) => {
     })
       .then(dbPostData => {
         // serialize data before passing to template
-        const posts = dbPostData.map(post => post.get({ plain: true }));
+        let posts = dbPostData.map(post => post.get({ plain: true }));
         res.render('create-post', { posts, loggedIn: true });
       })
       .catch(err => {

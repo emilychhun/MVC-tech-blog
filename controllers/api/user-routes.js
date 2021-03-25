@@ -1,10 +1,10 @@
-const router = require('express').Router();
-const { User, Post, Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+let router = require('express').Router();
+let { User, Post, Comment } = require('../../models');
+let withAuth = require('../../utils/auth');
 
 // GET /api/users
 router.get('/', (req, res) => {
-   // Access our User model and run .findAll() method)
+   // Access our User model and run .findAll() method
     User.findAll({
         attributes: { exclude: ['password'] }
     })
@@ -30,10 +30,7 @@ router.get('/:id', (req, res) => {
             {
                 model: Comment,
                 attributes: ['id', 'comment_text', 'created_at'],
-                include: {
-                  model: Post,
-                  attributes: ['title']
-                }
+                
             }
           ]
 
@@ -50,7 +47,9 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
       });
   });
-
+router.get('/login', (req, res) => {
+  res.render('login');
+});
 // POST /api/users
 router.post('/', (req, res) => {
     User.create({
@@ -119,10 +118,12 @@ router.post('/', (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
   // pass in req.body instead to only update what's passed through
     User.update(req.body, {
-        individualHooks: true,
+      attributes: ['id', 'username', 'email'],
+         individualHooks: true,
         where: {
             id: req.params.id
       }
+
     })
       .then(dbUserData => {
         if (!dbUserData[0]) {

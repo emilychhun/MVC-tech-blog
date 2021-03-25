@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+let { Model, DataTypes } = require('sequelize');
+let sequelize = require('../config/connection');
 
 // create our Post model
 class Post extends Model {}
@@ -27,6 +27,10 @@ Post.init(
           model: 'user',
           key: 'id'
         }
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: true
       }
     },
     {

@@ -10,17 +10,17 @@ Comment.belongsTo(User, {
   foreignKey: 'user_id',
 });
 
-// Comment have many Products
-Comment.belongsTo(Post, {
-  foreignKey: 'post_id',
-});
+// // Comment have many Products
+// Comment.hasMany(User, {
+//   foreignKey: 'ser_id',
+// });
 // Products belongToMany Tags (through ProductTag)
 Post.belongsTo(User, {
 foreignKey: 'user_id'
 });
 // Tags belongToMany Products (through ProductTag)
 Post.hasMany(Comment, {
-foreignKey: 'comment_id'
+foreignKey: 'post_id'
 });
 User.hasMany(Comment, {
     foreignKey: 'user_id',
