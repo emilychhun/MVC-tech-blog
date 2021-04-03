@@ -47,9 +47,13 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
       });
   });
+
+
+
 router.get('/login', (req, res) => {
   res.render('login');
 });
+
 // POST /api/users
 router.post('/', (req, res) => {
     User.create({
@@ -83,7 +87,7 @@ router.post('/', (req, res) => {
         return;
       }
   
-      const validPassword = dbUserData.checkPassword(req.body.password);
+      let validPassword = dbUserData.checkPassword(req.body.password);
   
       if (!validPassword) {
         res.status(400).json({ message: 'Incorrect password!' });
@@ -116,7 +120,7 @@ router.post('/', (req, res) => {
 
 // PUT /api/users/1
 router.put('/:id', withAuth, (req, res) => {
-  // pass in req.body instead to only update what's passed through
+ // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
     User.update(req.body, {
       attributes: ['id', 'username', 'email'],
          individualHooks: true,

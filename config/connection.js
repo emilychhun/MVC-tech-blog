@@ -1,12 +1,12 @@
-  
 // import the Sequelize constructor from the library
-let Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
+require("dotenv").config();
 
 // Creates mySQL connection using Sequelize
 // Include your MySQL user/password information
-let sequelize = process.env.JAWSDB_URL
+const sequelize = process.env.JAWSDB_URL
   ? new Sequelize(process.env.JAWSDB_URL)
-  : new Sequelize('MVC_Tech_Blog_db', 'root', '0220', {
+  : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
       host: 'localhost',
       port: 3306,
       dialect: 'mysql',
@@ -16,4 +16,5 @@ let sequelize = process.env.JAWSDB_URL
     });
 
 // Exports the connection for other files to use
+
 module.exports = sequelize;
