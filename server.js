@@ -15,7 +15,7 @@ let hbs = exphbs.create({ helpers });
 let session = require('express-session');
 
 let app = express();
-let PORT = process.env.PORT || 3001;
+let PORT = process.env.PORT || 3002;
 
 
 app.use(express.json());
