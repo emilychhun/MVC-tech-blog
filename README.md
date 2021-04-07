@@ -60,9 +60,13 @@ Because this application won’t be deployed, you’ll also need to create a wal
   View a demonstration of the application:
   <br />
   
- ![alt text](https://github.com/emilychhun/E-commerce-/blob/main/E-commerce1.gif "Logo Title Text 1")
  <br />
- ![alt text](https://github.com/emilychhun/E-commerce-/blob/main/E-commerce2.gif "Logo Title Text 1")
+
+  ![](./Note-Taker1.PNG)
+
+  <br />
+  
+ ![](./Note-Taker2.PNG)
   
   ## Licence
   📝📑
