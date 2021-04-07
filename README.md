@@ -12,7 +12,7 @@
 
   *The what, why, and how:* 
   
-  🔍This challenge is to build the back end for an MVC TechBlog site. CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well.  User will take a working Express.js API and configure it to use Sequelize to interact with a MySQL database.
+  🔍This challenge is to build the front end and back end for an MVC TechBlog site. CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well.  User will take a working Express.js API and configure it to use Sequelize to interact with a MySQL database.
 
 *Check out the [ExampleREADME.md](https://github.com/emilychhun/MVC-tech-blog/blob/main/README.md) as an example.*
   <br />
