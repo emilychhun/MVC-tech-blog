@@ -1,4 +1,4 @@
-<h1 align="center">✌️🤟🙏👋  E-Commerce Website Backend  ✌️🤟🙏👋</h1>
+<h1 align="center">✌️🤟🙏👋  MVC Tech Blog  ✌️🤟🙏👋</h1>
 <h1 align="center">
 
 ![badge](https://img.shields.io/npm/v/npm.svg?logo=javascript)
