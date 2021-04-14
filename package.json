@@ -1,6 +1,9 @@
 {
   "name": "MVC-tech-blog",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "description": "<h1 align=\"center\">✌️🤟🙏👋  MVC Tech Blog  ✌️🤟🙏👋</h1>\r <h1 align=\"center\">",
   "main": "server.js",
   "dependencies": {
